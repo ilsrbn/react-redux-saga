@@ -1,13 +1,38 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
+import Root from "./routes/root";
+import { Provider } from "react-redux";
+import ProfileRoute from "./routes/profile";
+import TodosRoute from "./routes/todos";
+import { store } from "./store";
+import NotFoundRoute from "./routes/not-found";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <NotFoundRoute />,
+    children: [
+      {
+        path: "profile",
+        element: <ProfileRoute />,
+      },
+      {
+        path: "",
+        element: <TodosRoute />,
+      },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
