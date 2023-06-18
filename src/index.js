@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import Root from "./routes/root";
 import { Provider } from "react-redux";
@@ -9,7 +9,7 @@ import TodosRoute from "./routes/todos";
 import { store } from "./store";
 import NotFoundRoute from "./routes/not-found";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <Root />,
